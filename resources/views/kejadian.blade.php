@@ -4,7 +4,7 @@
 <title>Info Kejadian Bencana</title>
 <style>
 body { font-family: Arial, sans-serif; margin: 20px; background: #f9f9f9; }
-h1 { color: #b30000; text-align: center; }
+h1 { color: #452d2dff; text-align: center; }
 .card {
 background: #fff;
 padding: 15px;
