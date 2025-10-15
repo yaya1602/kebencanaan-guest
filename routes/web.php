@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuestKebencanaanController;
 
 Route::get('/', function () {
@@ -33,3 +34,8 @@ Route::get('/dashboard', function () {
 Route::get('/', function () {
     return redirect()->route('login');
 });
+
+// Route untuk dashboard guest
+Route::get('/dashboard-guest', [DashboardController::class, 'index'])
+    ->name('dashboard.guest');
+
