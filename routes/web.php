@@ -1,16 +1,17 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuestKebencanaanController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GuestKejadianBencana;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/', function () {
-return redirect('/kejadian');
+    return redirect('/kejadian');
 });
 // Halaman guest untuk melihat daftar kejadian
 Route::get('/kejadian', [GuestKebencanaanController::class, 'index']);
@@ -24,7 +25,7 @@ Route::post('/auth/login', [AuthController::class, 'login']);
 // Route untuk halaman sukses setelah login (halaman dashboard sementara)
 Route::get('/dashboard', function () {
     // Pastikan hanya yang sudah login yang bisa akses (contoh sederhana)
-    if (!session('success')) {
+    if (! session('success')) {
         return redirect()->route('login');
     }
     return view('dashboard');
@@ -39,3 +40,9 @@ Route::get('/', function () {
 Route::get('/dashboard-guest', [DashboardController::class, 'index'])
     ->name('dashboard.guest');
 
+Route::prefix('guest')->name('guest.')->group(function () {
+    Route::get('/', [GuestKejadianBencana::class, 'index'])
+        ->name('index');
+
+    Route::resource('kejadian', GuestKejadianBencana::class);
+});

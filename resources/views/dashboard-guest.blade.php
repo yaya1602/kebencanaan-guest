@@ -32,7 +32,7 @@
                 Pantau dan dapatkan informasi kebencanaan desa secara cepat dan terintegrasi.
                 Dapatkan data kejadian, posko, donasi, serta logistik dengan mudah dan akurat.
             </p>
-            <a href="#" class="btn-primary">Selengkapnya</a>
+            <a href="#" class="btn-primary">Ayo Lihat!!</a>
         </div>
         <div class="hero-image">
             <img src="{{ asset('assets-guest/assets/img/Pedesaan.jpg') }}" alt="Balai Desa">
@@ -62,5 +62,7 @@
             <p>Distribusi Logistik</p>
         </div>
     </section>
+
+    
 </body>
 </html>
