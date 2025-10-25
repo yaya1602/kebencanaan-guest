@@ -8,12 +8,13 @@ class KejadianBencana extends Model
 {
 
     protected $table      = 'kejadian_bencana';
-    protected $primarykey = 'kejadian_id';
+    //protected $primarykey = 'kejadian_id';
     protected $fillable   = [
         'nama_bencana',
         'tanggal',
         'lokasi',
         'deskripsi',
+        'gambar'
     ];
 
 }

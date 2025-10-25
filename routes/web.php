@@ -5,6 +5,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuestKebencanaanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuestKejadianBencana;
+use App\Http\Controllers\GuestKejadianBencanaController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,12 +39,15 @@ Route::get('/', function () {
 });
 
 // Route untuk dashboard guest
-Route::get('/dashboard-guest', [DashboardController::class, 'index'])
-    ->name('dashboard.guest');
+Route::get('/dashboard-guest', [DashboardController::class, 'index'])->name('dashboard-guest'); 
 
-Route::prefix('guest')->name('guest.')->group(function () {
-    Route::get('/', [GuestKejadianBencana::class, 'index'])
-        ->name('index');
+// Rute ini KHUSUS untuk menangani form EDIT yang ada gambarnya
+Route::post('kejadian-bencana/update/{kejadianBencana}', [GuestKejadianBencanaController::class, 'update'])->name('kejadian-bencana.update-post');
 
-    Route::resource('kejadian', GuestKejadianBencana::class);
+// Route untuk CRUD Kejadian Bencana
+Route::resource('kejadian-bencana', GuestKejadianBencanaController::class);
+
+
+Route::get('/', function () {
+    return view('welcome');
 });
