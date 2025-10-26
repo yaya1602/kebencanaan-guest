@@ -30,7 +30,7 @@
         }
         .info-list li i {
             width: 30px;
-            color: #0d6efd;
+            color: #0d6efdff;
             text-align: center;
         }
         .deskripsi-title {
@@ -50,7 +50,7 @@
             margin-right: 10px;
         }
         footer {
-            background-color: #f8f9fa;
+            background-color: #bbbbbcff;
             padding: 20px 0;
             margin-top: 40px;
             border-top: 1px solid #e7e7e7;

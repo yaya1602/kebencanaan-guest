@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {{--CSS EKSTERNAL--}}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Kejadian Bencana</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets-guest/css/style.css') }}"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    {{-- CSS INTERNAL --}}
     <style>
+        
         /* Style untuk banner header */
         .hero-section {
-            background: url('{{ asset('assets-guest/images/bencana-banner.jpg') }}') no-repeat center center/cover; /* Ganti dengan path gambar banner Anda */
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-            margin-bottom: 30px;
-        }
+        background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('.../gambar-banner.jpg');
+        background-size: cover;
+        background-position: center;
+        color: #010000ff; /* Membuat semua teks di dalamnya putih */
+        padding: 60px 20px; /* Menambah ruang di dalam banner */
+        text-align: center;
+}
         
         /* Style untuk kartu bencana */
         .bencana-card {
@@ -27,17 +29,18 @@
             overflow: hidden;
             margin-bottom: 24px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+           transition: all 0.3s ease; /* Menambah animasi halus */
         }
         .bencana-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+            transform: translateY(-5px); /* Efek terangkat */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Bayangan lebih jelas */
         }
         .bencana-card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover; 
-        }
+             width: 100%;
+             height: 200px; /* <--- ATUR TINGGI PASTI */
+             object-fit: cover; /* <--- AJAIB! Mencegah gambar gepeng/penyok */
+}
+        
         .bencana-card-body {
             padding: 20px;
         }
@@ -80,6 +83,7 @@
     </style>
 </head>
 <body>
+     {{--header--}}
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ route('dashboard-guest') }}">KEBENCANAAN DESA</a>
@@ -113,6 +117,7 @@
             </div>
         </div>
     </nav>
+    {{--APP--}}
     <div class="hero-section">
         <div class="text-center px-3">
             <h1 class="display-4 fw-bold">Informasi Kejadian Bencana</h1>
@@ -143,7 +148,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="bencana-card">
                         @if ($bencana->gambar)
-                            <img src="{{ Storage::url($bencana->gambar) }}" alt="{{ $bencana->nama_bencana }}">
+                            <img src="{{ Storage::url($bencana->gambar) }}" alt="{{ $bencana->gambar }}">
                         @else
                             <img src="https://via.placeholder.com/400x220.png?text=Tidak+Ada+Gambar" alt="Tidak Ada Gambar">
                         @endif
@@ -152,7 +157,7 @@
                             <h5 class="bencana-card-title">{{ $bencana->nama_bencana }}</h5>
                             <div class="bencana-card-info">
                                 <p class="mb-1"><strong><i class="fas fa-map-marker-alt"></i> Lokasi:</strong> {{ $bencana->lokasi }}</p>
-                                <p class="mb-0"><strong><i class="fas fa-calendar-alt"></i> Tanggal:</strong> {{ \Carbon\Carbon::parse($bencana->tanggal_kejadian)->format('d F Y') }}</p>
+                                <p class="mb-0"><strong><i class="fas fa-calendar-alt"></i> Tanggal:</strong> {{ \Carbon\Carbon::parse($bencana->tanggal)->format('d F Y') }}</p>
                             </div>
                             <p class="bencana-card-text">{{ $bencana->deskripsi }}</p>
                             
@@ -192,12 +197,14 @@
             {{ $kejadianBencanas->links() }}
         </div>
     </div>
-
+        {{-- footer --}}
     <footer class="text-center text-muted">
         <div class="container">
-            <p>&copy; {{ date('Y') }} Sistem Informasi Kebencanaan Desa. All rights reserved.</p>
+            <p>&copy;Kepala Desa: <br>Eka Putra</br></p>
         </div>
     </footer>
+
+    {{--JS--}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

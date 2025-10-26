@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {{--CSS EKSTERNAL--}}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Laporan Kejadian Bencana</title>
@@ -17,6 +18,8 @@
     </style>
 </head>
 <body>
+
+{{--Header--}}
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ route('dashboard-guest') }}">KEBENCANAAN DESA</a>
@@ -50,6 +53,8 @@
             </div>
         </div>
     </nav>
+
+    {{--APP--}}
     <div class="container my-5">
         <div class="row justify-content-center">
             <div class="col-lg-8">
@@ -125,11 +130,14 @@
         </div>
     </div>
 
+    {{--footer--}}
     <footer class="text-center text-muted">
         <div class="container">
-            <p>&copy; {{ date('Y') }} Sistem Informasi Kebencanaan Desa. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }}Kepala Desa: <br> Eka Putra </br></p>
         </div>
     </footer>
+
+    {{--js--}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
