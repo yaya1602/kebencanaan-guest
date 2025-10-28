@@ -13,6 +13,7 @@
         <nav class="menu">
             <a href="{{ route('dashboard-guest') }}" class="active">Beranda</a>
             <a href="{{ route('kejadian-bencana.index') }}">Kejadian Bencana</a>
+             <a href="{{ route('warga.index') }}">Warga</a> 
             <a href="#">Posko Bencana</a>
             <a href="#">Donasi</a>
             <a href="#">Logistik</a>

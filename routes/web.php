@@ -1,53 +1,34 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\WargaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuestKebencanaanController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\GuestKejadianBencana;
 use App\Http\Controllers\GuestKejadianBencanaController;
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/', function () {
-    return redirect('/kejadian');
-});
-// Halaman guest untuk melihat daftar kejadian
-Route::get('/kejadian', [GuestKebencanaanController::class, 'index']);
-
-// Route untuk menampilkan halaman login
-Route::get('/auth', [AuthController::class, 'index'])->name('login');
-
-// Route untuk memproses form login
-Route::post('/auth/login', [AuthController::class, 'login']);
-
-// Route untuk halaman sukses setelah login (halaman dashboard sementara)
-Route::get('/dashboard', function () {
-    // Pastikan hanya yang sudah login yang bisa akses (contoh sederhana)
-    if (! session('success')) {
-        return redirect()->route('login');
-    }
-    return view('dashboard');
-})->name('dashboard');
-
-// Arahkan halaman utama ke halaman login untuk kemudahan
+// Arahkan ke login
 Route::get('/', function () {
     return redirect()->route('login');
 });
 
-// Route untuk dashboard guest
-Route::get('/dashboard-guest', [DashboardController::class, 'index'])->name('dashboard-guest'); 
+// AUTH
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Rute ini KHUSUS untuk menangani form EDIT yang ada gambarnya
-Route::post('kejadian-bencana/update/{kejadianBencana}', [GuestKejadianBencanaController::class, 'update'])->name('kejadian-bencana.update-post');
+// DASHBOARD tamu setelah login
+Route::get('/dashboard-guest', [DashboardController::class, 'index'])->name('dashboard-guest');
 
-// Route untuk CRUD Kejadian Bencana
+// HALAMAN TAMU
+Route::get('/kejadian', [GuestKebencanaanController::class, 'index']);
+
+// CRUD Kejadian Bencana
+Route::post('kejadian-bencana/update/{kejadianBencana}', [GuestKejadianBencanaController::class, 'update'])
+    ->name('kejadian-bencana.update-post');
 Route::resource('kejadian-bencana', GuestKejadianBencanaController::class);
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
+// CRUD Warga & User
+Route::resource('warga', WargaController::class);
+Route::resource('user', UserController::class);

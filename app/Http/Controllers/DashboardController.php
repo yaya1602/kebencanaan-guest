@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    /**
-     * Fungsi index untuk menampilkan dashboard guest
-     */
     public function index()
     {
+        // Cek apakah user sudah login
+        if (!session()->has('user_id')) {
+            return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu.');
+        }
+
         return view('dashboard-guest');
     }
 }

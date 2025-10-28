@@ -1,7 +1,7 @@
 <?php
 namespace App\Models;
 
-use App\Models\KejadianBencana;
+
 use Illuminate\Database\Eloquent\Model;
 
 class KejadianBencana extends Model

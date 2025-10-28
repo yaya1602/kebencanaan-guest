@@ -124,7 +124,8 @@
             </div>
         @endif
 
-        <form action="{{ url('/auth/login') }}" method="POST">
+        <form action="{{ url('/login') }}" method="POST">
+
             @csrf <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" class="form-control" value="{{ old('username') }}" required>

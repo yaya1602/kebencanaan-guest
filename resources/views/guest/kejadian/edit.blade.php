@@ -1,59 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {{--CSS EKSTERNAL--}}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Laporan Kejadian Bencana</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets-guest/css/style.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    {{-- CSS INTERNAL --}}
-    <style>
-        footer {
-            background-color: #f8f9fa;
-            padding: 20px 0;
-            margin-top: 40px;
-            border-top: 1px solid #e7e7e7;
-        }
-    </style>
-</head>
-<body>
-    {{--Header--}}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{{ route('dashboard-guest') }}">KEBENCANAAN DESA</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('dashboard-guest') }}">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route('kejadian-bencana.index') }}">Kejadian Bencana</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Posko Bencana</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Donasi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Logistik</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Distribusi Logistik</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Masuk</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
+@extends('layouts.guest.app')
+@section('content')
     {{--APP--}}
     <div class="container my-5">
         <div class="row justify-content-center">
@@ -139,14 +85,4 @@
         </div>
     </div>
 
-    {{--footer--}}
-    <footer class="text-center text-muted">
-        <div class="container">
-            <p>&copy; {{ date('Y') }} Sistem Informasi Kebencanaan Desa. All rights reserved.</p>
-        </div>
-    </footer>
-    
-    {{--JS--}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+@endsection

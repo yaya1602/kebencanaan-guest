@@ -1,11 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Models\KejadianBencana; // Pastikan model di-import
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\KejadianBencana;
 use Illuminate\Support\Facades\Storage; // Untuk mengelola file (gambar)
-use Illuminate\Support\Str; 
 
 class GuestKejadianBencanaController extends Controller
 {
@@ -14,11 +13,8 @@ class GuestKejadianBencanaController extends Controller
      */
     public function index()
     {
-        // Ambil data terbaru, paginasi 9 data per halaman
-        // Perbaiki juga path view-nya agar mencari di dalam folder 'guest/kejadian'
-        // Berdasarkan screenshot Anda (image_82b79d.png), file Anda ada di 'resources/views/guest/kejadian/index.blade.php'
-        
-        $kejadianBencanas = KejadianBencana::latest()->paginate(9); 
+
+        $kejadianBencanas = KejadianBencana::latest()->paginate(9);
         return view('guest.kejadian.index', compact('kejadianBencanas'));
     }
 
@@ -39,26 +35,27 @@ class GuestKejadianBencanaController extends Controller
         // Validasi input
         $request->validate([
             'nama_bencana' => 'required|string|max:255',
-            'lokasi' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
-            'tanggal' => 'required|date',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validasi gambar
+            'lokasi'       => 'required|string|max:255',
+            'deskripsi'    => 'required|string',
+            'tanggal'      => 'required|date',
+            'gambar'       => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:4098', // Validasi gambar
         ]);
 
         $data = $request->all();
-
+        // dd($request->all());
         // Cek jika ada file gambar yang di-upload
         if ($request->hasFile('gambar')) {
             // Simpan gambar ke storage/app/public/kejadian_bencana
-            $path = $request->file('gambar')->store('public/kejadian_bencana');
+            $path = $request->file('gambar')->store('kejadian_bencana', 'public');
             // Simpan path yang relatif ke 'public' folder (tanpa 'public/')
-            $data['gambar'] = Str::after($path, 'public/'); 
+             $data['gambar'] = $path;
         }
+
 
         KejadianBencana::create($data);
 
         return redirect()->route('kejadian-bencana.index')
-                         ->with('success', 'Data kejadian bencana berhasil ditambahkan.');
+            ->with('success', 'Data kejadian bencana berhasil ditambahkan.');
     }
 
     /**
@@ -85,42 +82,42 @@ class GuestKejadianBencanaController extends Controller
      */
     public function update(Request $request, KejadianBencana $kejadianBencana)
     {
-       // 1. Validasi data (Ini sudah benar)
-    $request->validate([
-        'nama_bencana' => 'required|string|max:255',
-        'lokasi' => 'required|string|max:255',
-        'deskripsi' => 'required|string',
-        'tanggal' => 'required|date',
-        'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
-    ]);
+        // 1. Validasi data (Ini sudah benar)
+        $request->validate([
+            'nama_bencana' => 'required|string|max:255',
+            'lokasi'       => 'required|string|max:255',
+            'deskripsi'    => 'required|string',
+            'tanggal'      => 'required|date',
+            'gambar'       => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+        ]);
 
-    // 2. SIMPAN DATA TEKS SECARA MANUAL
-    $kejadianBencana->nama_bencana = $request->nama_bencana;
-    $kejadianBencana->lokasi = $request->lokasi;
-    $kejadianBencana->deskripsi = $request->deskripsi;
-    $kejadianBencana->tanggal = $request->tanggal;
+        // 2. SIMPAN DATA TEKS SECARA MANUAL
+        $kejadianBencana->nama_bencana = $request->nama_bencana;
+        $kejadianBencana->lokasi       = $request->lokasi;
+        $kejadianBencana->deskripsi    = $request->deskripsi;
+        $kejadianBencana->tanggal      = $request->tanggal;
 
-    // 3. LOGIKA FILE GAMBAR (Kode Anda sudah benar, kita pakai lagi)
-    if ($request->hasFile('gambar')) {
-        
-        // Hapus gambar lama jika ada
-        if ($kejadianBencana->gambar) {
-            Storage::delete('public/' . $kejadianBencana->gambar);
+        // 3. LOGIKA FILE GAMBAR 
+        if ($request->hasFile('gambar')) {
+
+            // Hapus gambar lama jika ada
+            if ($kejadianBencana->gambar) {
+                Storage::delete('public/' . $kejadianBencana->gambar);
+            }
+
+            // Simpan gambar baru
+            $path = $request->file('gambar')->store('public/kejadianbencana');
+
+            // Simpan path baru ke model
+            $kejadianBencana->gambar = Str::after($path, 'public/');
         }
-        
-        // Simpan gambar baru
-        $path = $request->file('gambar')->store('public/kejadian_bencana');
-        
-        // Simpan path baru ke model
-        $kejadianBencana->gambar = Str::after($path, 'public/');
-    }
 
-    // 4. SIMPAN SEMUA PERUBAHAN KE DATABASE
-    $kejadianBencana->save(); // <-- Menggunakan save(), bukan update($data)
+                                  // 4. SIMPAN SEMUA PERUBAHAN KE DATABASE
+        $kejadianBencana->save(); // <-- Menggunakan save(), bukan update($data)
 
-    // 5. Redirect (Ini sudah benar)
-    return redirect()->route('kejadian-bencana.index')
-                     ->with('success', 'Data kejadian bencana berhasil diperbarui.');
+        // 5. Redirect 
+        return redirect()->route('kejadian-bencana.index')
+            ->with('success', 'Data kejadian bencana berhasil diperbarui.');
 
     }
 
@@ -133,11 +130,10 @@ class GuestKejadianBencanaController extends Controller
         if ($kejadianBencana->gambar) {
             Storage::delete('public/' . $kejadianBencana->gambar);
         }
-        
+
         $kejadianBencana->delete();
 
         return redirect()->route('kejadian-bencana.index')
-                         ->with('success', 'Data kejadian bencana berhasil dihapus.');
+            ->with('success', 'Data kejadian bencana berhasil dihapus.');
     }
 }
-
