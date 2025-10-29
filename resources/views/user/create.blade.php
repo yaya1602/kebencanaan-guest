@@ -1,8 +1,18 @@
 <h2>Tambah User</h2>
 <form action="{{ route('user.store') }}" method="POST">
     @csrf
-    <p>Nama: <input type="text" name="name" value="{{ old('name') }}"></p>
-    <p>Email: <input type="email" name="email" value="{{ old('email') }}"></p>
-    <p>Password: <input type="password" name="password"></p>
+    <label>Nama</label>
+    <input type="text" name="name" required>
+
+    <label>Email</label>
+    <input type="email" name="email" required>
+
+    <label>Password</label>
+    <input type="password" name="password" required>
+
+    <label>Username</label>
+    <input type="text" name="username" required>
+
+
     <button type="submit">Simpan</button>
 </form>

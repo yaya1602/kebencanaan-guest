@@ -17,14 +17,14 @@
         background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('.../gambar-banner.jpg');
         background-size: cover;
         background-position: center;
-        color: #010000ff; /* Membuat semua teks di dalamnya putih */
+        color: #4a4242ff; /* Membuat semua teks di dalamnya putih */
         padding: 60px 20px; /* Menambah ruang di dalam banner */
         text-align: center;
 }
         
         /* Style untuk kartu bencana (tetap pakai nama kelas yg sama, tidak masalah) */
         .bencana-card {
-            border: 1px solid #edededff;
+            border: 1px solid #d59090ff;
             border-radius: 8px;
             overflow: hidden;
             margin-bottom: 24px;
@@ -145,9 +145,7 @@
             @forelse ($wargas as $warga)
                 <div class="col-md-6 col-lg-4">
                     <div class="bencana-card">
-                        
-                        {{-- GANTI GAMBAR (Warga mungkin tdk punya gambar, jadi pakai placeholder) --}}
-                        <img src="https://via.placeholder.com/400x220.png?text=Foto+Warga" alt="Foto Warga">
+                    
                         
                         <div class="bencana-card-body">
                             {{-- GANTI FIELD --}}
