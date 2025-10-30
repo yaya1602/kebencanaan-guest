@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\dashboard;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WargaController;
+use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuestKebencanaanController;
 use App\Http\Controllers\GuestKejadianBencanaController;
@@ -32,3 +34,6 @@ Route::resource('kejadian-bencana', GuestKejadianBencanaController::class);
 // CRUD Warga & User
 Route::resource('warga', WargaController::class);
 Route::resource('user', UserController::class);
+
+//baru
+Route::resource('sekolah', SekolahController::class);

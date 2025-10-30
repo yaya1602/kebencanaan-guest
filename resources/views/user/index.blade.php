@@ -1,67 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Daftar User</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f8f9fa;
-        }
-        h2 {
-            color: #333;
-        }
-        a {
-            text-decoration: none;
-            color: #007bff;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        th, td {
-            border: 1px solid #dee2e6;
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #e9ecef;
-        }
-        .success {
-            background-color: #d4edda;
-            color: #155724;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
-        button {
-            background-color: #dc3545;
-            color: white;
-            border: none;
-            padding: 6px 10px;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #c82333;
-        }
-        .edit-link {
-            color: #28a745;
-            font-weight: bold;
-        }
-        .top-actions {
-            margin-bottom: 15px;
-        }
-    </style>
-</head>
-<body>
+@extends('layout-sekolah.app')
+@section('content')
 
-    <h2>Daftar User</h2>
+
+            <!-- Header Start -->
+        <div class="container-fluid header bg-white p-0">
+            <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
+                <div class="col-md-6 p-5 mt-lg-5">
+                    <h1 class="display-5 animated fadeIn mb-4">About Us</h1>
+                        <nav aria-label="breadcrumb animated fadeIn">
+                        <ol class="breadcrumb text-uppercase">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                            <li class="breadcrumb-item text-body active" aria-current="page">About</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-md-6 animated fadeIn">
+                    <img class="img-fluid" src="{{ asset('guest/img/header.jpg')}}" alt="">
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
 
     <div class="top-actions">
         <a href="{{ route('user.create') }}">➕ Tambah User</a>
@@ -97,5 +56,4 @@
         @endforeach
     </table>
 
-</body>
-</html>
+@endsection
