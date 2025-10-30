@@ -97,7 +97,7 @@ class GuestKejadianBencanaController extends Controller
         $kejadianBencana->deskripsi    = $request->deskripsi;
         $kejadianBencana->tanggal      = $request->tanggal;
 
-        // 3. LOGIKA FILE GAMBAR 
+        // 3. LOGIKA FILE GAMBAR
         if ($request->hasFile('gambar')) {
 
             // Hapus gambar lama jika ada
@@ -106,7 +106,7 @@ class GuestKejadianBencanaController extends Controller
             }
 
             // Simpan gambar baru
-            $path = $request->file('gambar')->store('public/kejadianbencana');
+            $path = $request->file('gambar')->store('public/kejadianbencana' );
 
             // Simpan path baru ke model
             $kejadianBencana->gambar = Str::after($path, 'public/');
@@ -115,7 +115,7 @@ class GuestKejadianBencanaController extends Controller
                                   // 4. SIMPAN SEMUA PERUBAHAN KE DATABASE
         $kejadianBencana->save(); // <-- Menggunakan save(), bukan update($data)
 
-        // 5. Redirect 
+        // 5. Redirect
         return redirect()->route('kejadian-bencana.index')
             ->with('success', 'Data kejadian bencana berhasil diperbarui.');
 
