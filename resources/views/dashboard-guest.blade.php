@@ -1,29 +1,6 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Guest - Kebencanaan Desa</title>
-    <link rel="stylesheet" href="{{ asset('assets-guest/css/dashboard-guest.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <header class="navbar">
-        <div class="logo"> <img src="{{ asset('assets-guest/assets/img/DESA-icon.jpeg') }}" alt=""></div>
-        <nav class="menu">
-            <a href="{{ route('dashboard-guest') }}" class="active">Beranda</a>
-            <a href="{{ route('kejadian-bencana.index') }}">Kejadian Bencana</a>
-             <a href="{{ route('warga.index') }}">Warga</a> 
-            <a href="#">Posko Bencana</a>
-            <a href="#">Donasi</a>
-            <a href="#">Logistik</a>
-            <a href="#">Distribusi Logistik</a>
-        </nav>
-        <div class="login">
-            <a href="{{ url('/auth') }}">Masuk</a>
-        </div>
-    </header>
-
+@extends('Layouts.guest.app')
+@section('content')
+{{--main content--}}
     <section class="hero">
         <div class="hero-text">
             <h1>KEBENCANAAN<br>DESA</h1>
@@ -41,7 +18,7 @@
     <section class="categories">
 
         <a href="{{ route('kejadian-bencana.index') }}" style="text-decoration: none; color: inherit;">
-            <div class="category"> 
+            <div class="category">
                 <img src="{{ asset('assets-guest/assets/img/kejadian bencana.jpeg') }}" alt="Kejadian Bencana">
                 <p>Kejadian Bencana</p>
             </div>
@@ -76,6 +53,4 @@
         </a>
 
     </section>
-
-</body>
-</html>
+@endsection

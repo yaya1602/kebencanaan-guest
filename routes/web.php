@@ -32,3 +32,8 @@ Route::resource('kejadian-bencana', GuestKejadianBencanaController::class);
 // CRUD Warga & User
 Route::resource('warga', WargaController::class);
 Route::resource('user', UserController::class);
+
+Route::get('/about', function () {
+    return view('guest.about');
+})->name('about');
+

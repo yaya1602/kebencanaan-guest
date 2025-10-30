@@ -1,117 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {{--CSS EKSTERNAL--}}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Warga</title> {{-- GANTI --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets-guest/css/style.css') }}"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-    {{-- CSS INTERNAL --}}
-    <style>
-        
-        /* Style untuk banner header */
-        .hero-section {
-        background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('.../gambar-banner.jpg');
-        background-size: cover;
-        background-position: center;
-        color: #4a4242ff; /* Membuat semua teks di dalamnya putih */
-        padding: 60px 20px; /* Menambah ruang di dalam banner */
-        text-align: center;
-}
-        
-        /* Style untuk kartu bencana (tetap pakai nama kelas yg sama, tidak masalah) */
-        .bencana-card {
-            border: 1px solid #d59090ff;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 24px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: all 0.3s ease; /* Menambah animasi halus */
-        }
-        .bencana-card:hover {
-            transform: translateY(-5px); /* Efek terangkat */
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Bayangan lebih jelas */
-        }
-        .bencana-card img {
-            width: 100%;
-            height: 200px; /* <--- ATUR TINGGI PASTI */
-            object-fit: cover; /* <--- AJAIB! Mencegah gambar gepeng/penyok */
-}
-        
-        .bencana-card-body {
-            padding: 20px;
-        }
-        .bencana-card-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #333;
-        }
-        .bencana-card-info {
-            font-size: 0.9rem;
-            color: #555;
-            margin-bottom: 15px;
-        }
-        .bencana-card-info strong {
-            color: #111;
-        }
-        .bencana-card-text {
-            font-size: 0.95rem;
-            color: #666;
-            margin-bottom: 20px;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            min-height: 60px; 
-        }
-        .bencana-card-actions .btn {
-            margin-right: 5px;
-            font-size: 0.85rem;
-            padding: 5px 10px;
-        }
-        footer {
-            background-color: #f8f9fa;
-            padding: 20px 0;
-            margin-top: 40px;
-            border-top: 1px solid #e7e7e7;
-        }
-    </style>
-</head>
-<body>
-    {{--header--}}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{{ route('dashboard-guest') }}">KEBENCANAAN DESA</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('dashboard-guest') }}">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('kejadian-bencana.index') }}">Kejadian Bencana</a> 
-                    </li>
-                    {{-- TAMBAHKAN LINK WARGA & USER --}}
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route('warga.index') }}">Warga</a>
-                    </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="#">User</a> {{-- Nanti ganti ke route('users.index') --}}
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Masuk</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+@extends('Layouts.guest.app')
+@section('content')
     {{--APP--}}
     <div class="hero-section">
         <div class="text-center px-3">
@@ -145,22 +33,22 @@
             @forelse ($wargas as $warga)
                 <div class="col-md-6 col-lg-4">
                     <div class="bencana-card">
-                    
-                        
+
+
                         <div class="bencana-card-body">
                             {{-- GANTI FIELD --}}
                             <h5 class="bencana-card-title">{{ $warga->nama_lengkap }}</h5>
-                            
+
                             {{-- GANTI INFO SESUAI DATA WARGA --}}
                             <div class="bencana-card-info">
                                 <p class="mb-1"><strong><i class="fas fa-id-card"></i> NIK:</strong> {{ $warga->nik }}</p>
                                 <p class="mb-1"><strong><i class="fas fa-phone-alt"></i> No. Telp:</strong> {{ $warga->no_telepon }}</p>
                                 <p class="mb-0"><strong><i class="fas fa-home"></i> Alamat:</strong> {{ $warga->alamat }}</p>
                             </div>
-                            
+
                             {{-- Hapus deskripsi, karena sudah diganti alamat di atas --}}
                             {{-- <p class="bencana-card-text">{{ $warga->deskripsi }}</p> --}}
-                            
+
                             <div class="bencana-card-actions">
                                 {{-- GANTI ROUTE & VARIABEL --}}
                                 <a href="{{ route('warga.show', $warga->id) }}" class="btn btn-info btn-sm text-white">
@@ -201,14 +89,4 @@
             {{ $wargas->links() }}
         </div>
     </div>
-        {{-- footer --}}
-    <footer class="text-center text-muted">
-        <div class="container">
-            <p>&copy;Kepala Desa: <br>Eka Putra</br></p>
-        </div>
-    </footer>
-
-    {{--JS--}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+@endsection
