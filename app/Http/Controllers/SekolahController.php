@@ -8,11 +8,8 @@ class SekolahController extends Controller
 {
     public function index()
     {
-        return view('sekolah.index');
+        return view('pages.sekolah.index');
     }
 
-     public function create()
-    {
-        return view('sekolah.create');
-    }
+
 }

@@ -1,64 +1,118 @@
-{{-- META TAG UMUM --}}
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
 
-{{-- CSS DINAMIS BERDASARKAN HALAMAN --}}
-@if (Request::is('dashboard-guest'))
-    <title>Dashboard Guest - Kebencanaan Desa</title>
-    <link rel="stylesheet" href="{{ asset('assets-guest/css/dashboard-guest.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet">
 
-@elseif (Request::is('kejadian-bencana*'))
-    <title>Daftar Kejadian Bencana</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets-guest/css/style.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    {{-- CSS INTERNAL KHUSUS HALAMAN KEJADIAN BENCANA --}}
+    <!-- Libraries Stylesheet -->
+    <link href="{{asset('guest/lib/animate/animate.min.css')}}" rel="stylesheet">
+    <link href="{{asset('guest/lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{{asset('guest/css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{{asset('guest/css/style.css')}}" rel="stylesheet">
+
     <style>
-        /* Banner */
-        .hero-section {
-            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('.../gambar-banner.jpg');
-            background-size: cover;
-            background-position: center;
-            color: #010000ff;
-            padding: 60px 20px;
-            text-align: center;
-        }
+/* Efek getar halus untuk card kejadian bencana */
+.kejadian-card {
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
 
-        /* Kartu Bencana */
-        .bencana-card {
-            border: 1px solid #edededff;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 24px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-        }
-        .bencana-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        }
-        .bencana-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
+.kejadian-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    animation: smoothShake 0.45s ease-in-out;
+}
 
-        /* Footer */
-        footer {
-            background-color: #f8f9fa;
-            padding: 20px 0;
-            margin-top: 40px;
-            border-top: 1px solid #e7e7e7;
-        }
+/* Animasi getar halus */
+@keyframes smoothShake {
+    0%, 100% { transform: translateX(0) scale(1.02); }
+    25% { transform: translateX(-2px) scale(1.02); }
+    50% { transform: translateX(2px) scale(1.02); }
+    75% { transform: translateX(-1px) scale(1.02); }
+}
 
-        .nav-link.active {
-            color: #fff !important;
-            background-color: #0d6efd;
-            border-radius: 5px;
-        }
+/* Efek cahaya saat hover */
+.kejadian-card::after {
+    content: "";
+    position: absolute;
+    top: -60%;
+    left: -70%;
+    width: 50%;
+    height: 220%;
+    background: rgba(255, 255, 255, 0.08);
+    transform: rotate(25deg);
+    transition: all 0.7s ease;
+    pointer-events: none;
+}
 
+.kejadian-card:hover::after {
+    left: 120%;
+    background: rgba(255, 255, 255, 0.15);
+}
+</style>
 
-    </style>
-@endif
+<style>
+/* Card warga */
+.warga-card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: #f8f9fa; /* abu muda, tidak putih murni */
+    border: 1px solid #e0e0e0;
+}
+
+/* Efek hover */
+.warga-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    animation: smoothShake 0.4s ease-in-out;
+}
+
+/* Getar halus */
+@keyframes smoothShake {
+    0%, 100% { transform: translate(0, 0) scale(1.02); }
+    25% { transform: translate(-1.5px, 0) scale(1.02); }
+    50% { transform: translate(1.5px, 0) scale(1.02); }
+    75% { transform: translate(-1px, 0) scale(1.02); }
+}
+
+/* Efek cahaya lembut di hover */
+.warga-card::after {
+    content: "";
+    position: absolute;
+    top: -60%;
+    left: -70%;
+    width: 50%;
+    height: 220%;
+    background: rgba(255, 255, 255, 0.05);
+    transform: rotate(25deg);
+    transition: all 0.7s ease;
+    pointer-events: none;
+}
+
+.warga-card:hover::after {
+    left: 120%;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Sedikit bayangan di awal */
+.warga-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+</style>
+

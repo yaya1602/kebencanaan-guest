@@ -15,7 +15,7 @@ class KejadianBencanaController extends Controller
     public function index()
     {
         $kejadianBencana = KejadianBencana::latest()->paginate(10);
-    return view('kejadian.index', compact('kejadianBencana'));
+    return view('pages.kejadian.index', compact('kejadianBencana'));
     }
 
     /**
@@ -23,7 +23,7 @@ class KejadianBencanaController extends Controller
      */
     public function create()
     {
-        return view('kejadian.create');
+        return view('pages.kejadian.create');
     }
 
     /**
@@ -57,7 +57,7 @@ class KejadianBencanaController extends Controller
      */
     public function show(KejadianBencana $kejadian_bencana)
     {
-        return view('kejadian.show', compact('kejadian_bencana'));
+        return view('pages.kejadian.show', compact('kejadian_bencana'));
     }
 
     /**
@@ -65,7 +65,7 @@ class KejadianBencanaController extends Controller
      */
     public function edit(KejadianBencana $kejadian_bencana)
     {
-        return view('kejadian.edit', compact('kejadian_bencana'));
+        return view('pages.kejadian.edit', compact('kejadian_bencana'));
     }
 
     /**

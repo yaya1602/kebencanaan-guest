@@ -1,4 +1,4 @@
-@extends('layout-sekolah.app')
+@extends('layouts.guest.app')
 
 @section('title', 'Tambah User')
 

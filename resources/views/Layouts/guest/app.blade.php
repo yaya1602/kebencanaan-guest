@@ -1,51 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <meta charset="utf-8">
+    <title>Kebencanaan dan Tanggap Darurat</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <!-- star css -->
     @include('layouts.guest.css')
+    <!-- end css -->
 </head>
+
 <body>
-    {{-- header --}}
-    @include('layouts.guest.header')
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
 
-    {{-- APP --}}
-    @yield('content')
+        <!-- Navbar Start -->
+        @include('layouts.guest.navbar')
+        <!-- Navbar End -->
 
-    {{-- footer --}}
-    @include('layouts.guest.footer')
+        <!-- main content -->
+        @yield('content')
+        <!-- main content -->
 
-    {{-- JS --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Footer Start -->
+       @include('layouts.guest.footer')
+        <!-- Footer End -->
 
-    {{-- Floating WhatsApp Button --}}
-    <a href="https://wa.me/628956742837?text=Halo%20saya%20ingin%20bertanya%20tentang%20laporan%20bencana"
-       class="float-wa" target="_blank" title="Hubungi via WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    </div>
 
-    {{-- CSS Floating Button --}}
-    <style>
-    .float-wa {
-        position: fixed;
-        width: 60px;
-        height: 60px;
-        bottom: 25px;
-        right: 25px;
-        background-color: #25D366;
-        color: #fff;
-        border-radius: 50%;
-        text-align: center;
-        font-size: 28px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        z-index: 9999;
-        transition: all 0.3s ease;
-    }
-    .float-wa:hover {
-        background-color: #1ebe57;
-        transform: scale(1.05);
-    }
-    .float-wa i {
-        margin-top: 16px;
-    }
-    </style>
+   @include('layouts.guest.js')
 </body>
+
 </html>

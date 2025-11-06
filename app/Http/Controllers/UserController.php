@@ -11,12 +11,12 @@ class UserController extends Controller
     public function index()
     {
         $user = User::all();
-        return view('user.index', compact('user'));
+        return view('pages.user.index', compact('user'));
     }
 
     public function create()
     {
-        return view('user.create');
+        return view('pages.user.create');
     }
 
     public function store(Request $request)
@@ -36,7 +36,7 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return view('user.edit', compact('user'));
+        return view('pages.user.edit', compact('user'));
     }
 
     public function update(Request $request, User $user)
@@ -63,4 +63,10 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route('user.index')->with('success', 'User berhasil dihapus!');
     }
+
+    public function show(User $user)
+    {
+    return view('pages.user.show', compact('user'));
+    }
+
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\dashboard;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\DashboardController;
@@ -13,7 +14,7 @@ use App\Http\Controllers\GuestKejadianBencanaController;
 
 // Arahkan ke login
 Route::get('/', function () {
-    return redirect()->route('login');
+    return redirect()->route('dashboard-guest');
 });
 
 // AUTH
@@ -42,3 +43,6 @@ Route::resource('sekolah', SekolahController::class);
 
 //route untuk kejadian bencana
 Route::resource('kejadian_bencana', KejadianBencanaController::class);
+
+// HALAMAN TENTANG KAMI
+Route::resource('about', AboutController::class)->only(['index']); 

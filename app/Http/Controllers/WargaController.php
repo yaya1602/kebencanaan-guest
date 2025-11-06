@@ -10,12 +10,12 @@ class WargaController extends Controller
     public function index()
     {
         $warga = Warga::all();
-        return view('warga.index', compact('warga'));
+        return view('pages.warga.index', compact('warga'));
     }
 
     public function create()
     {
-        return view('warga.create');
+        return view('pages.warga.create');
     }
 
     public function store(Request $request)
@@ -35,7 +35,7 @@ class WargaController extends Controller
 
     public function edit(Warga $warga)
     {
-        return view('warga.edit', compact('warga'));
+        return view('pages.warga.edit', compact('warga'));
     }
 
     public function update(Request $request, Warga $warga)
@@ -58,4 +58,10 @@ class WargaController extends Controller
         $warga->delete();
         return redirect()->route('warga.index')->with('success', 'Data warga berhasil dihapus!');
     }
+
+    public function show(Warga $warga)
+    {
+    return view('pages.warga.show', compact('warga'));
+    }
+
 }

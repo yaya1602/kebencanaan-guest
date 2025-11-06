@@ -14,7 +14,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto">
                 <a href="{{ route('dashboard-guest') }}" class="nav-item nav-link">Home</a>
-                <a href="#" class="nav-item nav-link">About</a>
+                <a href="{{route('about.index')}}" class="nav-item nav-link">About</a>
 
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Daftar Bencana</a>

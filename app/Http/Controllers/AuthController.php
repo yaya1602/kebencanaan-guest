@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
     public function index()
     {
-        return view('login-form');
+        return view('pages.auth.index');
     }
 
     public function login(Request $request)
@@ -29,7 +29,7 @@ class AuthController extends Controller
                 'user_id' => $user->id,
                 'user_nama' => $user->username,
             ]);
-            return redirect()->route('dashboard-guest')->with('success', 'Login berhasil!');
+            return redirect()->route('sekolah.index')->with('success', 'Login berhasil!');
         }
 
         return back()->withErrors(['loginError' => 'Username atau password salah!'])->withInput();
