@@ -12,7 +12,7 @@
     @endif
 
     <div class="mt-4">
-        <a href="{{ route('kejadian_bencana.index') }}" class="btn btn-secondary">Kembali</a>
+        <a href="{{ route('kejadian.index') }}" class="btn btn-secondary">Kembali</a>
     </div>
 </div>
 @endsection

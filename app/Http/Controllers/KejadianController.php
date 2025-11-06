@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\KejadianBencana;
 use Illuminate\Http\Request;
+use App\Models\KejadianBencana;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
-class KejadianBencanaController extends Controller
+class KejadianController extends Controller
 {
     /**
      * Tampilkan semua data kejadian bencana (READ)
@@ -15,7 +14,7 @@ class KejadianBencanaController extends Controller
     public function index()
     {
         $kejadianBencana = KejadianBencana::latest()->paginate(10);
-    return view('pages.kejadian.index', compact('kejadianBencana'));
+        return view('pages.kejadian.index', compact('kejadianBencana'));
     }
 
     /**
@@ -33,22 +32,22 @@ class KejadianBencanaController extends Controller
     {
         $request->validate([
             'nama_bencana' => 'required|string|max:255',
-            'tanggal' => 'required|date',
-            'lokasi' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
+            'tanggal'      => 'required|date',
+            'lokasi'       => 'required|string|max:255',
+            'deskripsi'    => 'required|string',
+            'gambar'       => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
         ]);
 
         $data = $request->all();
 
         if ($request->hasFile('gambar')) {
-            $path = $request->file('gambar')->store('kejadian_bencana', 'public');
+            $path           = $request->file('gambar')->store('kejadian_bencana', 'public');
             $data['gambar'] = $path;
         }
 
         KejadianBencana::create($data);
 
-        return redirect()->route('kejadian_bencana.index')
+        return redirect()->route('kejadian.index')
             ->with('success', 'Data kejadian bencana berhasil ditambahkan.');
     }
 
@@ -75,10 +74,10 @@ class KejadianBencanaController extends Controller
     {
         $request->validate([
             'nama_bencana' => 'required|string|max:255',
-            'tanggal' => 'required|date',
-            'lokasi' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
+            'tanggal'      => 'required|date',
+            'lokasi'       => 'required|string|max:255',
+            'deskripsi'    => 'required|string',
+            'gambar'       => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
         ]);
 
         $data = $request->only(['nama_bencana', 'tanggal', 'lokasi', 'deskripsi']);
@@ -88,13 +87,13 @@ class KejadianBencanaController extends Controller
                 Storage::delete('public/' . $kejadian_bencana->gambar);
             }
 
-            $path = $request->file('gambar')->store('kejadian_bencana', 'public');
+            $path           = $request->file('gambar')->store('kejadian_bencana', 'public');
             $data['gambar'] = $path;
         }
 
         $kejadian_bencana->update($data);
 
-        return redirect()->route('kejadian_bencana.index')
+        return redirect()->route('kejadian.index')
             ->with('success', 'Data kejadian bencana berhasil diperbarui.');
     }
 
@@ -109,7 +108,7 @@ class KejadianBencanaController extends Controller
 
         $kejadian_bencana->delete();
 
-        return redirect()->route('kejadian_bencana.index')
+        return redirect()->route('kejadian.index')
             ->with('success', 'Data kejadian bencana berhasil dihapus.');
     }
 }

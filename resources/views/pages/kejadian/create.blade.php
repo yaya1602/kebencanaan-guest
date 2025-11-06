@@ -4,7 +4,7 @@
 <div class="container py-5">
     <h2 class="mb-4">Tambah Kejadian Bencana</h2>
 
-    <form action="{{ route('kejadian_bencana.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('kejadian.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="mb-3">
@@ -33,7 +33,7 @@
         </div>
 
         <button type="submit" class="btn btn-success">Simpan</button>
-        <a href="{{ route('kejadian_bencana.index') }}" class="btn btn-secondary">Kembali</a>
+        <a href="{{ route('kejadian.index') }}" class="btn btn-secondary">Kembali</a>
     </form>
 </div>
 @endsection

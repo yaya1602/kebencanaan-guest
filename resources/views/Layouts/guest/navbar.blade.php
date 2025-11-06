@@ -19,13 +19,13 @@
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Daftar Bencana</a>
                     <div class="dropdown-menu rounded-0 m-0">
-                        <a href="{{ route('kejadian_bencana.index') }}" class="dropdown-item">Kejadian Bencana</a>
+                        <a href="{{ route('kejadian.index') }}" class="dropdown-item">Kejadian Bencana</a>
                         <a href="#" class="dropdown-item">Posko Bencana</a>
                         <a href="#" class="dropdown-item">Donasi Bencana</a>
                         <a href="#" class="dropdown-item">Logistik</a>
                         <a href="#" class="dropdown-item">Distribusi</a>
                     </div>
-                    
+
                 </div>
                 <a href="{{ route('warga.index') }}" class="nav-item nav-link">Warga</a>
 

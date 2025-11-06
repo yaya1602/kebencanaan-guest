@@ -7,10 +7,11 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\SekolahController;
+use App\Http\Controllers\KejadianController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\KejadianBencanaController;
 use App\Http\Controllers\GuestKebencanaanController;
 use App\Http\Controllers\GuestKejadianBencanaController;
+use App\Http\Controllers\KejadianBencanaController;
 
 // Arahkan ke login
 Route::get('/', function () {
@@ -29,11 +30,6 @@ Route::get('/dashboard-guest', [SekolahController::class, 'index'])->name('dashb
 // HALAMAN TAMU
 Route::get('/kejadian', [GuestKebencanaanController::class, 'index']);
 
-// CRUD Kejadian Bencana
-Route::post('kejadian-bencana/update/{kejadianBencana}', [GuestKejadianBencanaController::class, 'update'])
-    ->name('kejadian-bencana.update-post');
-Route::resource('kejadian-bencana', GuestKejadianBencanaController::class);
-
 // CRUD Warga & User
 Route::resource('warga', WargaController::class);
 Route::resource('user', UserController::class);
@@ -42,7 +38,7 @@ Route::resource('user', UserController::class);
 Route::resource('sekolah', SekolahController::class);
 
 //route untuk kejadian bencana
-Route::resource('kejadian_bencana', KejadianBencanaController::class);
+Route::resource('kejadian', KejadianController::class);
 
 // HALAMAN TENTANG KAMI
-Route::resource('about', AboutController::class)->only(['index']); 
+Route::resource('about', AboutController::class)->only(['index']);
