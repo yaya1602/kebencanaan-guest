@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KejadianBencanaController;
 use App\Http\Controllers\GuestKebencanaanController;
 use App\Http\Controllers\GuestKejadianBencanaController;
 
@@ -20,8 +21,9 @@ Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// DASHBOARD tamu setelah login
-Route::get('/dashboard-guest', [DashboardController::class, 'index'])->name('dashboard-guest');
+
+// DASHBOARD tamu setelah login (arahkan ke halaman sekolah)
+Route::get('/dashboard-guest', [SekolahController::class, 'index'])->name('dashboard-guest');
 
 // HALAMAN TAMU
 Route::get('/kejadian', [GuestKebencanaanController::class, 'index']);
@@ -35,5 +37,8 @@ Route::resource('kejadian-bencana', GuestKejadianBencanaController::class);
 Route::resource('warga', WargaController::class);
 Route::resource('user', UserController::class);
 
-//baru
+//baru ke halaman dashboard sekolah
 Route::resource('sekolah', SekolahController::class);
+
+//route untuk kejadian bencana
+Route::resource('kejadian_bencana', KejadianBencanaController::class);

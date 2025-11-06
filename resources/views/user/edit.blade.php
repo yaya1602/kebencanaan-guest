@@ -1,39 +1,33 @@
-<h2>Edit User</h2>
+@extends('layout-sekolah.app')
 
-@if ($errors->any())
-    <div style="color: red;">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+@section('title', 'Edit User')
 
-<form action="{{ route('user.update', $user->id) }}" method="POST">
-    @csrf
-    @method('PUT')
+@section('content')
+<div class="container">
+    <h2 class="mb-3">Edit User</h2>
 
-    <p>
-        Nama:
-        <input type="text" name="name" value="{{ old('name', $user->name) }}" required>
-    </p>
+    <form action="{{ route('user.update', $user->id) }}" method="POST">
+        @csrf
+        @method('PUT')
 
-    <p>
-        Username:
-        <input type="text" name="username" value="{{ old('username', $user->username) }}" required>
-    </p>
+        <div class="mb-3">
+            <label>Nama</label>
+            <input type="text" name="name" class="form-control" value="{{ $user->name }}" required>
+        </div>
 
-    <p>
-        Email:
-        <input type="email" name="email" value="{{ old('email', $user->email) }}" required>
-    </p>
+        <div class="mb-3">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control" value="{{ $user->email }}" required>
+        </div>
 
-    <p>
-        Password (biarkan kosong jika tidak diubah):
-        <input type="password" name="password">
-    </p>
+        <div class="mb-3">
+            <label>Password (opsional)</label>
+            <input type="password" name="password" class="form-control">
+            <small class="text-muted">Kosongkan jika tidak ingin mengganti password</small>
+        </div>
 
-    <button type="submit">Update</button>
-    <a href="{{ route('user.index') }}">Batal</a>
-</form>
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="{{ route('user.index') }}" class="btn btn-secondary">Kembali</a>
+    </form>
+</div>
+@endsection

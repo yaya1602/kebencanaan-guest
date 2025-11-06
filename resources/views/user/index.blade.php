@@ -1,59 +1,39 @@
 @extends('layout-sekolah.app')
+
+@section('title', 'Data User')
+
 @section('content')
+<div class="container py-5">
+    <h2 class="mb-4 text-center">Daftar User</h2>
 
-
-            <!-- Header Start -->
-        <div class="container-fluid header bg-white p-0">
-            <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
-                <div class="col-md-6 p-5 mt-lg-5">
-                    <h1 class="display-5 animated fadeIn mb-4">About Us</h1>
-                        <nav aria-label="breadcrumb animated fadeIn">
-                        <ol class="breadcrumb text-uppercase">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                            <li class="breadcrumb-item text-body active" aria-current="page">About</li>
-                        </ol>
-                    </nav>
-                </div>
-                <div class="col-md-6 animated fadeIn">
-                    <img class="img-fluid" src="{{ asset('guest/img/header.jpg')}}" alt="">
-                </div>
-            </div>
-        </div>
-        <!-- Header End -->
-
-    <div class="top-actions">
-        <a href="{{ route('user.create') }}">➕ Tambah User</a>
-    </div>
+    <a href="{{ route('user.create') }}" class="btn btn-success mb-4">+ Tambah User</a>
 
     @if(session('success'))
-        <div class="success">
-            {{ session('success') }}
-        </div>
+        <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <table>
-        <tr>
-            <th>No</th>
-            <th>Nama</th>
-            <th>Email</th>
-            <th>Aksi</th>
-        </tr>
-        @foreach($users as $u)
-        <tr>
-            <td>{{ $loop->iteration }}</td>
-            <td>{{ $u->name }}</td>
-            <td>{{ $u->email }}</td>
-            <td>
-                <a class="edit-link" href="{{ route('user.edit', $u->id) }}">Edit</a> |
-                <form action="{{ route('user.destroy', $u->id) }}" method="POST" style="display:inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" onclick="return confirm('Yakin ingin menghapus user ini?')">Hapus</button>
-                </form>
-            </td>
-        </tr>
-        @endforeach
-    </table>
+    <div class="row g-4">
+        @forelse($user as $index => $item)
+            <div class="col-lg-4 col-md-6">
+                <div class="card user-card border-0 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $item->name }}</h5>
+                        <p class="card-text mb-1"><strong>Email:</strong> {{ $item->email }}</p>
 
+                        <div class="d-flex justify-content-between mt-3">
+                            <a href="{{ route('user.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ route('user.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus user ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger btn-sm">Hapus</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @empty
+            <p class="text-center">Belum ada data user.</p>
+        @endforelse
+    </div>
+</div>
 @endsection
