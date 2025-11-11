@@ -54,23 +54,23 @@ class KejadianController extends Controller
     /**
      * Tampilkan detail data tertentu (READ detail)
      */
-    public function show(KejadianBencana $kejadian_bencana)
+    public function show(KejadianBencana $kejadian)
     {
-        return view('pages.kejadian.show', compact('kejadian_bencana'));
+        return view('pages.kejadian.show', compact('kejadian'));
     }
 
     /**
      * Tampilkan form edit data (UPDATE form)
      */
-    public function edit(KejadianBencana $kejadian_bencana)
+    public function edit(KejadianBencana $kejadian)
     {
-        return view('pages.kejadian.edit', compact('kejadian_bencana'));
+        return view('pages.kejadian.edit', compact('kejadian'));
     }
 
     /**
      * Simpan perubahan data (UPDATE)
      */
-    public function update(Request $request, KejadianBencana $kejadian_bencana)
+    public function update(Request $request, KejadianBencana $kejadian)
     {
         $request->validate([
             'nama_bencana' => 'required|string|max:255',
@@ -83,15 +83,15 @@ class KejadianController extends Controller
         $data = $request->only(['nama_bencana', 'tanggal', 'lokasi', 'deskripsi']);
 
         if ($request->hasFile('gambar')) {
-            if ($kejadian_bencana->gambar) {
-                Storage::delete('public/' . $kejadian_bencana->gambar);
+            if ($kejadian->gambar) {
+                Storage::delete('public/' . $kejadian->gambar);
             }
 
             $path           = $request->file('gambar')->store('kejadian_bencana', 'public');
             $data['gambar'] = $path;
         }
 
-        $kejadian_bencana->update($data);
+        $kejadian->update($data);
 
         return redirect()->route('kejadian.index')
             ->with('success', 'Data kejadian bencana berhasil diperbarui.');
@@ -100,13 +100,13 @@ class KejadianController extends Controller
     /**
      * Hapus data (DELETE)
      */
-    public function destroy(KejadianBencana $kejadian_bencana)
+    public function destroy(KejadianBencana $kejadian)
     {
-        if ($kejadian_bencana->gambar) {
-            Storage::delete('public/' . $kejadian_bencana->gambar);
+        if ($kejadian->gambar) {
+            Storage::delete('public/' . $kejadian->gambar);
         }
 
-        $kejadian_bencana->delete();
+        $kejadian->delete();
 
         return redirect()->route('kejadian.index')
             ->with('success', 'Data kejadian bencana berhasil dihapus.');
