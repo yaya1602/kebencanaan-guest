@@ -3,6 +3,7 @@
 @section('title', 'Tentang Kami')
 
 @section('content')
+
 <div class="container py-5">
     <div class="bg-white shadow-md rounded-4 p-4 p-md-5">
         <h1 class="text-center mb-4 fw-bold">Tentang Kami</h1>
@@ -25,6 +26,7 @@
                 <div class="card border-0 shadow-sm h-100">
                     <div class="ratio ratio-16x9">
                         <img src="{{ asset('assets-guest/img/logistik.jpeg') }}" 
+                        
                              class="card-img-top object-fit-cover" 
                              alt="Tim Kebencanaan">
                     </div>
@@ -41,7 +43,8 @@
             <div class="col-md-4">
                 <div class="card border-0 shadow-sm h-100">
                     <div class="ratio ratio-16x9">
-                        <img src="{{ asset('assets-guest/img/donasi.jpg') }}" 
+                        <img src="{{ asset('assets-guest/img/donasi.jpg') }}"
+
                              class="card-img-top object-fit-cover" 
                              alt="Kolaborasi Masyarakat">
                     </div>
@@ -59,6 +62,7 @@
                 <div class="card border-0 shadow-sm h-100">
                     <div class="ratio ratio-16x9">
                         <img src="{{ asset('assets-guest/img/posko.jpeg') }}" 
+
                              class="card-img-top object-fit-cover" 
                              alt="Tanggap Darurat Cepat">
                     </div>
