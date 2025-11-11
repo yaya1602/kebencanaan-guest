@@ -1,5 +1,6 @@
 @extends('layouts.guest.app')
 
+
 @section('title', 'Tentang Kami')
 
 @section('content')
@@ -26,7 +27,7 @@
                 <div class="card border-0 shadow-sm h-100">
                     <div class="ratio ratio-16x9">
                         <img src="{{ asset('assets-guest/img/logistik.jpeg') }}" 
-                        
+
                              class="card-img-top object-fit-cover" 
                              alt="Tim Kebencanaan">
                     </div>

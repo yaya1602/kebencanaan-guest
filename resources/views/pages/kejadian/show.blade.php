@@ -1,5 +1,6 @@
 @extends('layouts.guest.app')
 
+
 @section('content')
 <div class="container py-5">
     <h2 class="mb-3">{{ $kejadian_bencana->nama_bencana }}</h2>

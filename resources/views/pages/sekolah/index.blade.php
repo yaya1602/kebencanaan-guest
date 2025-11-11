@@ -1,4 +1,5 @@
 @extends('layouts.guest.app')
+
 @section('content')
 <!-- main content -->
         <!-- Header Start -->

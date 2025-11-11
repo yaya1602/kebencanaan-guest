@@ -1,5 +1,6 @@
 @extends('layouts.guest.app')
 
+
 @section('content')
 <div class="container py-5">
     <h2 class="mb-4">Tambah Kejadian Bencana</h2>

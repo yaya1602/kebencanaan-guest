@@ -1,5 +1,6 @@
 @extends('layouts.guest.app')
 
+
 @section('title', 'Data Warga')
 
 @section('content')
@@ -45,7 +46,7 @@
                                 </a>
 
                                 {{-- Tombol Hapus --}}
-                                
+
                                 <form action="{{ route('warga.destroy', $item->id) }}" 
                                       method="POST" 
                                       onsubmit="return confirm('Yakin ingin menghapus data ini?')">

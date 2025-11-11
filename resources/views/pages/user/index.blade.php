@@ -1,5 +1,6 @@
 @extends('layouts.guest.app')
 
+
 @section('title', 'Data User')
 
 @section('content')
@@ -40,7 +41,7 @@
                             <form action="{{ route('user.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus user ini?')">
                                 @csrf
                                 @method('DELETE')
-                                
+
                                 <button class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash-alt me-1"></i> Hapus
                                 </button>

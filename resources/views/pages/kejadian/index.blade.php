@@ -1,5 +1,6 @@
 @extends('layouts.guest.app')
 
+
 @section('content')
 <div class="container-xxl py-5">
     <div class="container">
@@ -44,7 +45,7 @@
                                 </a>
 
                                 <!-- Tombol Hapus -->
-                                 
+
                                 <form action="{{ route('kejadian.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus data ini?')" class="d-inline">
                                     @csrf
                                     @method('DELETE')
