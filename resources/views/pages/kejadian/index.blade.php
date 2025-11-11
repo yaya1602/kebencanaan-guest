@@ -32,16 +32,19 @@
 
                             <div class="d-flex justify-content-between align-items-center mt-3">
                                 <!-- Tombol Lihat -->
+
                                 <a href="{{ route('kejadian.show', $item->id) }}" class="btn btn-primary btn-sm">
                                     <i class="fa fa-eye me-1"></i> Lihat
                                 </a>
 
                                 <!-- Tombol Edit -->
+
                                 <a href="{{ route('kejadian.edit', $item->id) }}" class="btn btn-warning btn-sm text-white">
                                     <i class="fa fa-edit me-1"></i> Edit
                                 </a>
 
                                 <!-- Tombol Hapus -->
+                                 
                                 <form action="{{ route('kejadian.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus data ini?')" class="d-inline">
                                     @csrf
                                     @method('DELETE')

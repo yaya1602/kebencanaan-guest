@@ -31,18 +31,21 @@
 
                             <div class="d-flex justify-content-between mt-3">
                                 {{-- Tombol Lihat --}}
+
                                 <a href="{{ route('warga.show', $item->id) }}" 
                                    class="btn btn-info btn-sm text-white">
                                     <i class="fas fa-eye me-1"></i> Lihat
                                 </a>
 
                                 {{-- Tombol Edit --}}
+
                                 <a href="{{ route('warga.edit', $item->id) }}" 
                                    class="btn btn-warning btn-sm text-white">
                                     <i class="fas fa-edit me-1"></i> Edit
                                 </a>
 
                                 {{-- Tombol Hapus --}}
+                                
                                 <form action="{{ route('warga.destroy', $item->id) }}" 
                                       method="POST" 
                                       onsubmit="return confirm('Yakin ingin menghapus data ini?')">

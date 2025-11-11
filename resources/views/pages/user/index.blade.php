@@ -24,19 +24,23 @@
 
                         <div class="d-flex justify-content-between mt-3">
                             {{-- Tombol LIHAT --}}
+
                             <a href="{{ route('user.show', $item->id) }}" class="btn btn-info btn-sm">
                                 <i class="fas fa-eye me-1"></i> Lihat
                             </a>
 
                             {{-- Tombol EDIT --}}
+
                             <a href="{{ route('user.edit', $item->id) }}" class="btn btn-warning btn-sm">
                                 <i class="fas fa-edit me-1"></i> Edit
                             </a>
 
                             {{-- Tombol HAPUS --}}
+
                             <form action="{{ route('user.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus user ini?')">
                                 @csrf
                                 @method('DELETE')
+                                
                                 <button class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash-alt me-1"></i> Hapus
                                 </button>
