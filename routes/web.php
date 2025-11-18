@@ -9,9 +9,11 @@ use App\Http\Controllers\WargaController;
 use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\KejadianController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PoskoBencanaController;
+use App\Http\Controllers\DonasiBencanaController;
+use App\Http\Controllers\KejadianBencanaController;
 use App\Http\Controllers\GuestKebencanaanController;
 use App\Http\Controllers\GuestKejadianBencanaController;
-use App\Http\Controllers\KejadianBencanaController;
 
 // Arahkan ke login
 Route::get('/', function () {
@@ -42,3 +44,7 @@ Route::resource('kejadian', KejadianController::class);
 
 // HALAMAN TENTANG KAMI
 Route::resource('about', AboutController::class)->only(['index']);
+
+//Route untuk posko dan donasi
+Route::resource('posko', PoskoBencanaController::class);
+Route::resource('donasi', DonasiBencanaController::class);
