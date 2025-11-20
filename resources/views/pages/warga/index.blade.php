@@ -20,7 +20,7 @@
         @endif
 
         <div class="row g-4">
-            @forelse($warga as $item)
+            @forelse($dataWarga as $item)
                 <div class="col-lg-4 col-md-6">
                     <div class="card warga-card border-0 shadow-sm">
                         <div class="card-body">
@@ -63,6 +63,8 @@
             @empty
                 <p class="text-center">Belum ada data warga.</p>
             @endforelse
+             <div class="mt-3">
+        {{ $dataWarga->links('pagination::bootstrap-5') }}
         </div>
     </div>
 </div>

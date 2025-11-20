@@ -18,7 +18,7 @@
         @endif
 
         <div class="row g-4">
-            @forelse($kejadianBencana as $item)
+            @forelse($dataKejadian as $item)
                 <div class="col-lg-4 col-md-6">
                     <div class="card border-0 shadow-sm kejadian-card">
                         @if($item->gambar)
@@ -60,11 +60,12 @@
             @empty
                 <p class="text-center">Belum ada data kejadian bencana.</p>
             @endforelse
+            <div class="mt-3">
+        {{ $dataKejadian->links('pagination::bootstrap-5') }}
+    </div>
         </div>
 
-        <div class="mt-4">
-            {{ $kejadianBencana->links() }}
-        </div>
+        
     </div>
 </div>
 @endsection

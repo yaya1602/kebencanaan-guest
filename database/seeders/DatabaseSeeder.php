@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
         UserSeeder::class,
         PoskoSeeder::class,
         DonasiSeeder::class,
+         KejadianBencanaSeeder::class,
+         WargaSeeder::class,
     ]);
 
     }

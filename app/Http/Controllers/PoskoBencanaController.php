@@ -9,8 +9,8 @@ class PoskoBencanaController extends Controller
 {
     public function index()
     {
-        $posko = PoskoBencana::all();
-        return view('pages.posko.index', compact('posko'));
+        $data ['dataPosko']= PoskoBencana::paginate(10);
+        return view('pages.posko.index', $data);
     }
 
     public function create()

@@ -10,8 +10,9 @@ class DonasiBencanaController extends Controller
 {
     public function index()
     {
-        $donasi = DonasiBencana::with('posko')->get();
-        return view('pages.donasi.index', compact('donasi'));
+        $data ['dataDonasi']=DonasiBencana::paginate(10);
+        return view('pages.donasi.index', $data);
+
     }
 
     public function create()

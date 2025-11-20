@@ -10,8 +10,9 @@ class UserController extends Controller
 {
     public function index()
     {
-        $user = User::all();
-        return view('pages.user.index', compact('user'));
+        $data ['dataUser']= User::paginate(10);
+        return view('pages.user.index', $data);
+
     }
 
     public function create()

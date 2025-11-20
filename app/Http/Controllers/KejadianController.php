@@ -13,8 +13,12 @@ class KejadianController extends Controller
      */
     public function index()
     {
-        $kejadianBencana = KejadianBencana::latest()->paginate(10);
-        return view('pages.kejadian.index', compact('kejadianBencana'));
+        $data ['dataKejadian'] = KejadianBencana::paginate(10);
+        return view('pages.kejadian.index', $data);
+
+
+        $data ['dataPosko']= PoskoBencana::paginate(10);
+        return view('pages.posko.index', $data);
     }
 
     /**

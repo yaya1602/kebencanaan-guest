@@ -16,7 +16,7 @@
     @endif
 
     <div class="row g-4">
-        @forelse($user as $index => $item)
+        @forelse($dataUser as $index => $item)
             <div class="col-lg-4 col-md-6">
                 <div class="card user-card border-0 shadow-sm">
                     <div class="card-body">
@@ -53,6 +53,9 @@
         @empty
             <p class="text-center">Belum ada data user.</p>
         @endforelse
+        <div class="mt-3">
+        {{ $dataUser->links('pagination::bootstrap-5') }}
+    </div>
     </div>
 </div>
 @endsection

@@ -17,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($donasi as $d)
+            @foreach ($dataDonasi as $d)
             <tr>
                 <td>{{ $d->donatur_nama }}</td>
                 <td>{{ $d->jenis_donasi }}</td>
@@ -39,5 +39,8 @@
             @endforeach
         </tbody>
     </table>
+    <div class="mt-3">
+        {{ $dataDonasi->links('pagination::bootstrap-5') }}
+    </div>
 </div>
 @endsection
