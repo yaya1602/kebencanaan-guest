@@ -7,14 +7,32 @@ use Illuminate\Http\Request;
 
 class WargaController extends Controller
 {
-    public function index()
-    {
-        $data ['dataWarga'] = Warga::paginate(10);
-        return view('pages.warga.index', $data);
+    public function index(Request $request)
+{
+    // Kolom yang bisa difilter (hanya jenis kelamin)
+    $filterableColumns = ['jenis_kelamin'];
 
-         $data ['dataUser']= User::paginate(10);
-        return view('pages.user.index', $data);
-    }
+    // Kolom untuk fitur search
+    $searchableColumns = ['nama_lengkap', 'nik', 'alamat', 'no_telepon'];
+
+
+    // Ambil list jenis kelamin untuk dropdown
+    $listJK = Warga::select('jenis_kelamin')
+                   ->distinct()
+                   ->pluck('jenis_kelamin');
+
+    // Gunakan scopeFilter dari model
+    $data['dataWarga'] = Warga::filter($request, $filterableColumns)
+                        ->search($request, $searchableColumns)
+                        ->paginate(10);
+
+    // Kirim listJK ke view
+    $data['listJK'] = $listJK;
+
+    return view('pages.warga.index', $data);
+}
+
+
 
     public function create()
     {
