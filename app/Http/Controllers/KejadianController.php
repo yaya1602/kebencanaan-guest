@@ -1,9 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\KejadianBencana;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class KejadianController extends Controller
@@ -11,14 +10,24 @@ class KejadianController extends Controller
     /**
      * Tampilkan semua data kejadian bencana (READ)
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data ['dataKejadian'] = KejadianBencana::paginate(10);
-        return view('pages.kejadian.index', $data);
+        // Kolom yang boleh difilter
+        $filterable = ['nama_bencana'];
 
+        // Kolom yang bisa dicari
+        $searchableColumns = ['nama_bencana', 'lokasi', 'tanggal', 'deskripsi'];
 
-        $data ['dataPosko']= PoskoBencana::paginate(10);
-        return view('pages.posko.index', $data);
+        $dataKejadian = KejadianBencana::query()
+            ->filter($request, $filterable)
+            ->search($request, $searchableColumns)
+            ->paginate(10);
+            
+
+        // Ambil list nama_bencana untuk isi select
+        $jenisBencana = KejadianBencana::select('nama_bencana')->distinct()->get();
+
+        return view('pages.kejadian.index', compact('dataKejadian', 'jenisBencana'));
     }
 
     /**

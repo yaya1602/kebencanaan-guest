@@ -13,6 +13,43 @@
             <i class="fa fa-plus me-2"></i> Tambah Kejadian
         </a>
 
+    <form action="{{ route('kejadian.index') }}" method="GET" class="mb-4">
+        <div class="row">
+            <div class="col-md-4">
+                <label class="form-label fw-bold">Filter Nama Bencana</label>
+                    <select name="nama_bencana" class="form-control" onchange="this.form.submit()">
+                        <option value="">Semua Jenis</option>
+
+                @foreach($jenisBencana as $row)
+                    <option value="{{ $row->nama_bencana }}"
+                        {{ request('nama_bencana') == $row->nama_bencana ? 'selected' : '' }}>
+                        {{ $row->nama_bencana }}
+                    </option>
+                @endforeach
+                     </select>
+            </div>
+
+
+              {{-- SEARCH --}}
+             <div class="col-md-3">
+                 <div class="input-group mt-4">
+                     <input type="text" name="search" class="form-control"
+                        value="{{ request('search') }}" placeholder="Search...">
+
+                    <!-- Tombol Cari -->
+            <button class="btn btn-success" type="submit">
+            Cari
+            </button>
+                </div>
+
+            </div>
+
+            <div class="col-md-2 d-flex align-items-end">
+                <a href="{{ route('kejadian.index') }}" class="btn btn-secondary">Reset</a>
+            </div>
+        </div>
+    </form>
+
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
@@ -65,7 +102,7 @@
     </div>
         </div>
 
-        
+
     </div>
 </div>
 @endsection
