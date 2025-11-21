@@ -8,12 +8,34 @@ use Illuminate\Http\Request;
 
 class DonasiBencanaController extends Controller
 {
-    public function index()
-    {
-        $data ['dataDonasi']=DonasiBencana::paginate(10);
-        return view('pages.donasi.index', $data);
+    public function index(Request $request)
+{
+    $query = DonasiBencana::query();
 
+    // FILTER JENIS DONASI
+    if ($request->jenis_donasi) {
+        $query->where('jenis_donasi', $request->jenis_donasi);
     }
+
+    // SEARCH DONATUR / NILAI / JENIS
+    if ($request->search) {
+        $keyword = $request->search;
+        $query->where(function($q) use ($keyword) {
+            $q->where('donatur_nama', 'LIKE', "%$keyword%")
+              ->orWhere('jenis_donasi', 'LIKE', "%$keyword%")
+              ->orWhere('nilai', 'LIKE', "%$keyword%");
+        });
+    }
+
+    $data['dataDonasi'] = $query->paginate(10)->withQueryString();
+
+    // Dropdown Jenis Donasi
+    $data['listJenisDonasi'] = DonasiBencana::select('jenis_donasi')->distinct()->pluck('jenis_donasi');
+
+    return view('pages.donasi.index', $data);
+}
+
+
 
     public function create()
     {

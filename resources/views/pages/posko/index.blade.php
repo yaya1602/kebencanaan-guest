@@ -7,6 +7,7 @@
 
     <a href="{{ route('posko.create') }}" class="btn btn-primary mb-4">+ Tambah Posko</a>
 
+    <!-- letak disini untuk kode filternya  -->
 
     <div class="row">
         @forelse ($dataPosko as $p)
