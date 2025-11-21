@@ -11,6 +11,44 @@
         <i class="fas fa-user-plus me-1"></i> + Tambah User
     </a>
 
+    <form method="GET" action="{{ route('user.index') }}" class="mb-4">
+    <div class="row">
+
+        {{-- FILTER USERNAME --}}
+        <div class="col-md-3">
+            <select name="name" class="form-select" onchange="this.form.submit()">
+                    <option value="">Semua Nama</option>
+                        @foreach($listNames as $nm)
+                     <option value="{{ $nm }}" {{ request('name') == $nm ? 'selected' : '' }}>
+                        {{ $nm }}
+                    </option>
+                        @endforeach
+            </select>
+
+        </div>
+
+        {{-- SEARCH --}}
+        <div class="col-md-3">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control"
+                       value="{{ request('search') }}"
+                       placeholder="Cari Nama / Email / Username">
+
+                <button type="submit" class="btn btn-success">
+                    Cari
+                </button>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <a href="{{ route('user.index') }}" class="btn btn-secondary w-100">Reset</a>
+        </div>
+
+    </div>
+</form>
+
+
+
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif

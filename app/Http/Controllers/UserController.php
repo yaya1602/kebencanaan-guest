@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\User;
@@ -8,11 +7,27 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data ['dataUser']= User::paginate(10);
-        return view('pages.user.index', $data);
+        // Kolom yang bisa difilter
+        $filterableColumns = ['name'];
 
+        // Kolom yang bisa dicari
+        $searchableColumns = ['name', 'email'];
+
+        // Daftar name unik untuk dropdown
+        $listNames = User::select('name')
+            ->distinct()
+            ->pluck('name');
+
+        // Terapkan filter + search
+        $data['dataUser'] = User::filter($request, $filterableColumns)
+            ->search($request, $searchableColumns)
+            ->paginate(10);
+
+        $data['listNames'] = $listNames;
+
+        return view('pages.user.index', $data);
     }
 
     public function create()
@@ -23,8 +38,8 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|email|unique:users,email',
             'password' => 'required|min:6',
         ]);
 
@@ -43,8 +58,8 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $user->id,
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|email|unique:users,email,' . $user->id,
             'password' => 'nullable|min:6',
         ]);
 
@@ -67,7 +82,7 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-    return view('pages.user.show', compact('user'));
+        return view('pages.user.show', compact('user'));
     }
 
 }

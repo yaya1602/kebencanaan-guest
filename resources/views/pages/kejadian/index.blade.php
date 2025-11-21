@@ -40,14 +40,14 @@
             <button class="btn btn-success" type="submit">
             Cari
             </button>
-                </div>
-
             </div>
 
-            <div class="col-md-2 d-flex align-items-end">
-                <a href="{{ route('kejadian.index') }}" class="btn btn-secondary">Reset</a>
-            </div>
         </div>
+
+        <div class="col-md-2 d-flex align-items-end">
+            <a href="{{ route('kejadian.index') }}" class="btn btn-secondary">Reset</a>
+        </div>
+    </div>
     </form>
 
         @if(session('success'))
