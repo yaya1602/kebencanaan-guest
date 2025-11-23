@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\PoskoBencana;
@@ -7,11 +6,36 @@ use Illuminate\Http\Request;
 
 class PoskoBencanaController extends Controller
 {
-    public function index()
-    {
-        $data ['dataPosko']= PoskoBencana::paginate(10);
-        return view('pages.posko.index', $data);
-    }
+    public function index(Request $request)
+{
+    $filterable = ['penanggung_jawab'];
+
+    // Kolom yang bisa dicari (search bar)
+    $searchableColumns = ['nama_posko', 'alamat', 'penanggung_jawab'];
+
+
+    // List dropdown
+    $listPJ = PoskoBencana::select('penanggung_jawab')
+        ->distinct()
+        ->get();
+
+    // Data posko hasil filter
+    $dataPosko = PoskoBencana::query()
+        ->filter($request, $filterable)
+        ->search($request, $searchableColumns)
+        ->paginate(10);
+
+    
+    // Kolom yang bisa dicari (search bar)
+    $searchableColumns = ['nama_posko', 'alamat', 'penanggung_jawab'];
+
+
+    return view('pages.posko.index', [
+        'listPJ' => $listPJ,
+        'PoskoBencana' => $dataPosko
+    ]);
+}
+
 
     public function create()
     {
@@ -21,9 +45,9 @@ class PoskoBencanaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_posko' => 'required',
-            'alamat' => 'required',
-            'kontak' => 'required',
+            'nama_posko'       => 'required',
+            'alamat'           => 'required',
+            'kontak'           => 'required',
             'penanggung_jawab' => 'required',
         ]);
 

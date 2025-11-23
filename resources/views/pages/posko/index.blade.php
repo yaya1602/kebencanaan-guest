@@ -8,9 +8,50 @@
     <a href="{{ route('posko.create') }}" class="btn btn-primary mb-4">+ Tambah Posko</a>
 
     <!-- letak disini untuk kode filternya  -->
+     <form method="GET" action="{{ route('posko.index') }}" class="mb-3">
+    <div class="row">
+
+        <div class="col-md-3">
+            <label class="form-label fw-bold">Filter Penanggung Jawab</label>
+            <select name="penanggung_jawab" class="form-select" onchange="this.form.submit()">
+                <option value="">Semua Penanggung</option>
+
+                @foreach($listPJ as $pj)
+                    <option value="{{ $pj->penanggung_jawab }}"
+                        {{ request('penanggung_jawab') == $pj->penanggung_jawab ? 'selected' : '' }}>
+                        {{ $pj->penanggung_jawab }}
+                    </option>
+                @endforeach
+            </select>
+    </div>
+            {{-- SEARCH --}}
+             <div class="col-md-3">
+                 <div class="input-group mt-4">
+                     <input type="text" name="search" class="form-control"
+                        value="{{ request('search') }}" placeholder="Search...">
+
+                    <!-- Tombol Cari -->
+            <button class="btn btn-success" type="submit">
+            Cari
+            </button>
+            
+             @if(request('search')) 							
+            <a href="{{ request()->fullUrlWithQuery(['search'=> null]) }}" class="btn btn-outline-secondary ml-3" id="clear-search"> Clear</a> 					
+            @endif
+            </div>
+           
+
+
+</div>
+</form>
+
+
+
+
+
 
     <div class="row">
-        @forelse ($dataPosko as $p)
+        @forelse ($PoskoBencana as $p)
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
 
@@ -54,19 +95,19 @@
 
 
                     </div>
-                    
+
                 </div>
-                
+
 
             </div>
-            
-             
+
+
         </div>
         @empty
             <p class="text-muted">Belum ada data posko.</p>
         @endforelse
         <div class="mt-3">
-        {{ $dataPosko->links('pagination::bootstrap-5') }}
+        {{$PoskoBencana->links('pagination::bootstrap-5') }}
     </div>
     </div>
 
