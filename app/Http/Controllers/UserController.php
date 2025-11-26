@@ -23,7 +23,7 @@ class UserController extends Controller
         // Terapkan filter + search
         $data['dataUser'] = User::filter($request, $filterableColumns)
             ->search($request, $searchableColumns)
-            ->paginate(10);
+            ->simplePaginate(10);
 
         $data['listNames'] = $listNames;
 

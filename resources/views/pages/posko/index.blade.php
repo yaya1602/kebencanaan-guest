@@ -107,7 +107,8 @@
             <p class="text-muted">Belum ada data posko.</p>
         @endforelse
         <div class="mt-3">
-        {{$PoskoBencana->links('pagination::bootstrap-5') }}
+            
+        {{$PoskoBencana->links('pagination::simple-bootstrap-5')}}
     </div>
     </div>
 

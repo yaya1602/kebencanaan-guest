@@ -24,7 +24,7 @@ class WargaController extends Controller
     // Gunakan scopeFilter dari model
     $data['dataWarga'] = Warga::filter($request, $filterableColumns)
                         ->search($request, $searchableColumns)
-                        ->paginate(10);
+                        ->simplePaginate(10);
 
     // Kirim listJK ke view
     $data['listJK'] = $listJK;

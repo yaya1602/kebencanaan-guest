@@ -27,7 +27,7 @@ class DonasiBencanaController extends Controller
         });
     }
 
-    $data['dataDonasi'] = $query->paginate(10)->withQueryString();
+    $data['dataDonasi'] = $query->simplePaginate(10)->withQueryString();
 
     // Dropdown Jenis Donasi
     $data['listJenisDonasi'] = DonasiBencana::select('jenis_donasi')->distinct()->pluck('jenis_donasi');

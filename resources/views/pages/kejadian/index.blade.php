@@ -98,7 +98,7 @@
                 <p class="text-center">Belum ada data kejadian bencana.</p>
             @endforelse
             <div class="mt-3">
-        {{ $dataKejadian->links('pagination::bootstrap-5') }}
+        {{ $dataKejadian->links('pagination::simple-bootstrap-5') }}
     </div>
         </div>
 
@@ -106,3 +106,5 @@
     </div>
 </div>
 @endsection
+
+

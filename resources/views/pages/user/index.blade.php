@@ -92,7 +92,7 @@
             <p class="text-center">Belum ada data user.</p>
         @endforelse
         <div class="mt-3">
-        {{ $dataUser->links('pagination::bootstrap-5') }}
+        {{ $dataUser->links('pagination::simple-bootstrap-5') }}
     </div>
     </div>
 </div>

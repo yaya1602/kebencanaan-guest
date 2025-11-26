@@ -84,7 +84,7 @@
     </div>
 
     <div class="mt-3">
-        {{ $dataDonasi->links('pagination::bootstrap-5') }}
+        {{ $dataDonasi->links('pagination::simple-bootstrap-5') }}
     </div>
 </div>
 @endsection

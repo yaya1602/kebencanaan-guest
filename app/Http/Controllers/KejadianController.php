@@ -21,7 +21,7 @@ class KejadianController extends Controller
         $dataKejadian = KejadianBencana::query()
             ->filter($request, $filterable)
             ->search($request, $searchableColumns)
-            ->paginate(10);
+            ->simplePaginate(10);
             
 
         // Ambil list nama_bencana untuk isi select
